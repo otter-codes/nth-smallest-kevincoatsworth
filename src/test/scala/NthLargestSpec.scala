@@ -4,7 +4,7 @@ class NthLargestSpec extends WordSpec with MustMatchers {
 
   "NthLargest" must {
 
-    "return 1 when given List(1) and an n of 0" in {
+    "return 1 when given List(1) and an n of 1" in {
       NthLargest.checkNthLargest(List(1),1) mustEqual 1
     }
 
@@ -24,6 +24,14 @@ class NthLargestSpec extends WordSpec with MustMatchers {
 
       val e = intercept[IllegalArgumentException] {
         NthLargest.checkNthLargest(List(1,2),3)
+      }
+      e.getMessage mustEqual "Illegal n number used"
+    }
+
+    "Throw IllegalArgumentException when given List(1,2,3) and an n of 0" in {
+
+      val e = intercept[IllegalArgumentException] {
+        NthLargest.checkNthLargest(List(1,2,3),0)
       }
       e.getMessage mustEqual "Illegal n number used"
     }
